@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SwaggerHallOfFame</name>
+    </assembly>
+    <members>
+        <member name="M:SwaggerHallOfFame.Controllers.PersonController.GetPersons">
+            <summary>
+            Получение всех сотрудников
+            </summary>
+        </member>
+        <member name="M:SwaggerHallOfFame.Controllers.PersonController.GetPerson(System.Nullable{System.Int64})">
+            <summary>
+            Получение конкретного сотрудника
+            </summary>
+        </member>
+        <member name="M:SwaggerHallOfFame.Controllers.PersonController.PostPerson(SwaggerHallOfFame.Person)">
+             <summary>
+             Добавление сотрудника
+             </summary>
+             <remarks>
+             Пример запроса:
+            
+                 {
+                    "name": "Petr Bikhteev",
+                    "displayName": "petrbikhteev"
+                 }
+            
+             </remarks>
+        </member>
+        <member name="M:SwaggerHallOfFame.Controllers.PersonController.PutPerson(System.Nullable{System.Int64},SwaggerHallOfFame.Person)">
+             <summary>
+             Обновление сотрудника
+             </summary>
+             <remarks>
+             Пример запроса:
+             
+                 {
+                    "id": 1,
+                    "name": "Petr Bikhteev",
+                    "displayName": "petr2002"      
+                 }
+            
+             </remarks>
+        </member>
+        <member name="M:SwaggerHallOfFame.Controllers.PersonController.DeletePerson(System.Nullable{System.Int64})">
+            <summary>
+            Удаление конкретного сотрудника
+            </summary>
+        </member>
+        <member name="M:SwaggerHallOfFame.Controllers.PersonSkillController.GetPersonSkills(System.Nullable{System.Int64})">
+            <summary>
+            Получение навыков сотрудника
+            </summary>
+        </member>
+        <member name="M:SwaggerHallOfFame.Controllers.PersonSkillController.PostPersonSkill(SwaggerHallOfFame.ConPersonSkill)">
+             <summary>
+             Добавление навыка для сотрудника
+             </summary>
+             <remarks>
+             Пример запроса:
+            
+                 {
+                    "name": "Знание ПК"
+                 }
+            
+             </remarks>
+        </member>
+        <member name="M:SwaggerHallOfFame.Controllers.PersonSkillController.DeletePersonSkill(System.Nullable{System.Int64})">
+            <summary>
+            Удаление конкретного навыка
+            </summary>
+        </member>
+        <member name="M:SwaggerHallOfFame.Controllers.SkillController.GetSkills">
+            <summary>
+            Получение всех навыков
+            </summary>
+        </member>
+        <member name="M:SwaggerHallOfFame.Controllers.SkillController.GetSkill(System.Nullable{System.Int64})">
+            <summary>
+            Получение конкретного навыка
+            </summary>
+        </member>
+        <member name="M:SwaggerHallOfFame.Controllers.SkillController.PostSkill(SwaggerHallOfFame.Skill)">
+             <summary>
+             Добавление навыка
+             </summary>
+             <remarks>
+             Пример запроса:
+            
+                 {
+                    "name": "Знание ПК"
+                 }
+            
+             </remarks>
+        </member>
+        <member name="M:SwaggerHallOfFame.Controllers.SkillController.PutSkill(System.Nullable{System.Int64},SwaggerHallOfFame.Skill)">
+             <summary>
+             Обновление навыка
+             </summary>
+             <remarks>
+             Пример запроса:
+            
+                 {
+                    "id": 1,
+                    "name": "Знание PC"
+                 }
+            
+             </remarks>
+        </member>
+        <member name="M:SwaggerHallOfFame.Controllers.SkillController.DeleteSkill(System.Nullable{System.Int64})">
+            <summary>
+            Удаление конкретного навыка
+            </summary>
+        </member>
+    </members>
+</doc>
