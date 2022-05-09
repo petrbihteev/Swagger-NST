@@ -48,9 +48,14 @@
             Удаление конкретного сотрудника
             </summary>
         </member>
-        <member name="M:SwaggerHallOfFame.Controllers.PersonSkillController.GetPersonSkills(System.Nullable{System.Int64})">
+        <member name="M:SwaggerHallOfFame.Controllers.PersonSkillController.GetPersonSkills">
             <summary>
-            Получение навыков сотрудника
+            Получение всех навыков для сотрудниокв
+            </summary>
+        </member>
+        <member name="M:SwaggerHallOfFame.Controllers.PersonSkillController.GetPersonSkill(System.Nullable{System.Int64})">
+            <summary>
+            Получение навыка(-ов) определенного сотрудника
             </summary>
         </member>
         <member name="M:SwaggerHallOfFame.Controllers.PersonSkillController.PostPersonSkill(SwaggerHallOfFame.ConPersonSkill)">
@@ -61,7 +66,24 @@
              Пример запроса:
             
                  {
-                    "name": "Знание ПК"
+                     "level": 10,
+                     "personId": 4,
+                     "skillId": 3
+                 }
+            
+             </remarks>
+        </member>
+        <member name="M:SwaggerHallOfFame.Controllers.PersonSkillController.PutPersonSkill(System.Nullable{System.Int64},SwaggerHallOfFame.ConPersonSkill)">
+             <summary>
+             Обновление навыка сотрудника
+             </summary>
+             <remarks>
+             Пример запроса:
+             
+                 {
+                    "id": 1,
+                    "name": "Petr Bikhteev",
+                    "displayName": "petr2002"      
                  }
             
              </remarks>

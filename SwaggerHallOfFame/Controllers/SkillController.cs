@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Net;
 
 namespace SwaggerHallOfFame.Controllers
 {
@@ -33,9 +34,10 @@ namespace SwaggerHallOfFame.Controllers
 
                 return Ok(allSkills);
             }
-            catch
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return StatusCode((int)HttpStatusCode.InternalServerError,
+                    ex.InnerException.Message.ToString());
             }
         }
 
@@ -57,9 +59,10 @@ namespace SwaggerHallOfFame.Controllers
 
                 return Ok(skill);
             }
-            catch
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return StatusCode((int)HttpStatusCode.InternalServerError,
+                    ex.InnerException.Message.ToString());
             }
         }
 
@@ -85,9 +88,10 @@ namespace SwaggerHallOfFame.Controllers
 
                 return Ok(skill);
             }
-            catch
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return StatusCode((int)HttpStatusCode.InternalServerError,
+                    ex.InnerException.Message.ToString());
             }
         }
 
@@ -105,24 +109,25 @@ namespace SwaggerHallOfFame.Controllers
         /// </remarks>
         //Метод Put: api/v1/skill Обновление данных конретного навыка
         [HttpPut("v1/skill/{id}")]
-        public async Task<ActionResult<Skill>> PutSkill(long? id, Skill updateskill)
+        public async Task<ActionResult<Skill>> PutSkill(long? id, Skill updateSkill)
         {
             try
             {
-                if (id != updateskill.Id)
+                if (id != updateSkill.Id)
                 {
                     return BadRequest("Не совпадают id");
                 }
 
                 var skill = await _db.Skills.FindAsync(id);
-                _db.Entry(skill).CurrentValues.SetValues(updateskill);
+                _db.Entry(skill).CurrentValues.SetValues(updateSkill);
                 await _db.SaveChangesAsync();
 
                 return Ok(skill);
             }
-            catch
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return StatusCode((int)HttpStatusCode.InternalServerError,
+                    ex.InnerException.Message.ToString());
             }
         }
 
@@ -147,9 +152,10 @@ namespace SwaggerHallOfFame.Controllers
 
                 return Ok(skill);
             }
-            catch
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return StatusCode((int)HttpStatusCode.InternalServerError,
+                     ex.InnerException.Message.ToString());
             }
         }
     }

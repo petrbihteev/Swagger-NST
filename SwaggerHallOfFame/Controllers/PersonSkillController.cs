@@ -16,11 +16,36 @@ namespace SwaggerHallOfFame.Controllers
         }
 
         /// <summary>
-        /// Получение навыков сотрудника
+        /// Получение всех навыков для сотрудниокв
+        /// </summary>
+        //Метод GET: api/v1/personskills Получение всех навыков для сотрудников
+        [HttpGet("v1/personskills")]
+        public async Task<ActionResult<IEnumerable<ConPersonSkill>>> GetPersonSkills()
+        {
+            try
+            {
+                var allPersonSkill = await _db.ConPersonSkills.ToListAsync();
+
+                if (allPersonSkill == null)
+                {
+                    return NotFound("Записи не найдены");
+                }
+
+                return Ok(allPersonSkill);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError,
+                    ex.InnerException.Message.ToString());
+            }
+        }
+
+        /// <summary>
+        /// Получение навыка(-ов) определенного сотрудника
         /// </summary>
         //Метод GET: api/v1/personskill/id Получение навыков сотрудника по Id
         [HttpGet("v1/personskill/{id}")]
-        public async Task<IActionResult> GetPersonSkills(long? id)
+        public async Task<IActionResult> GetPersonSkill(long? id)
         {
             try
             {
@@ -29,14 +54,15 @@ namespace SwaggerHallOfFame.Controllers
 
                 if (personSkill.Count == 0)
                 {
-                    return NotFound("Навыки не найдены");
+                    return NotFound("Навыки сотрудника не найдены");
                 }
 
                 return Ok(personSkill);
             }
-            catch
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return StatusCode((int)HttpStatusCode.InternalServerError,
+                    ex.InnerException.Message.ToString());
             }
         }
 
@@ -47,7 +73,9 @@ namespace SwaggerHallOfFame.Controllers
         /// Пример запроса:
         ///
         ///     {
-        ///        "name": "Знание ПК"
+        ///         "level": 10,
+        ///         "personId": 4,
+        ///         "skillId": 3
         ///     }
         ///
         /// </remarks>
@@ -62,7 +90,7 @@ namespace SwaggerHallOfFame.Controllers
 
                 if (personSkill != null)
                 {
-                    return NotFound("У сотрудника уже есть данный навык!");
+                    return NotFound("У сотрудника уже есть данный навык");
                 }
 
                 _db.ConPersonSkills.Add(postPersonSkill);
@@ -77,7 +105,43 @@ namespace SwaggerHallOfFame.Controllers
             }
         }
 
+        /// <summary>
+        /// Обновление навыка сотрудника
+        /// </summary>
+        /// <remarks>
+        /// Пример запроса:
+        /// 
+        ///     {
+        ///         "idPersonSkill": 0,
+        ///         "level": 10,
+        ///         "personId": 0,
+        ///         "skillId": 0
+        ///     }
+        ///
+        /// </remarks>
+        //Метод Put: api/v1/personskill Обновление навыка у сотрудника
+        [HttpPut("v1/personskill/{id}")]
+        public async Task<ActionResult<ConPersonSkill>> PutPersonSkill(long? id, ConPersonSkill updatePersonSkill)
+        {
+            try
+            {
+                if (id != updatePersonSkill.IdPersonSkill)
+                {
+                    return BadRequest("Не совпадают id");
+                }
 
+                var personSkill = await _db.ConPersonSkills.FindAsync(id);
+                _db.Entry(personSkill).CurrentValues.SetValues(updatePersonSkill);
+                await _db.SaveChangesAsync();
+
+                return Ok(personSkill);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError,
+                    ex.InnerException.Message.ToString());
+            }
+        }
 
         /// <summary>
         /// Удаление конкретного навыка
@@ -102,7 +166,8 @@ namespace SwaggerHallOfFame.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex);
+                return StatusCode((int)HttpStatusCode.InternalServerError,
+                    ex.InnerException.Message.ToString());
             }
         }
     }

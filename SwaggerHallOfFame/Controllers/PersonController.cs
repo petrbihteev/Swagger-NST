@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Net;
 
 namespace SwaggerHallOfFame.Controllers
 {
@@ -32,9 +33,10 @@ namespace SwaggerHallOfFame.Controllers
 
                 return Ok(allPersons);
             }
-            catch
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return StatusCode((int)HttpStatusCode.InternalServerError,
+                    ex.InnerException.Message.ToString());
             }
         }
 
@@ -56,9 +58,10 @@ namespace SwaggerHallOfFame.Controllers
 
                 return Ok(person);
             }
-            catch
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return StatusCode((int)HttpStatusCode.InternalServerError,
+                    ex.InnerException.Message.ToString());
             }
         }
 
@@ -85,9 +88,10 @@ namespace SwaggerHallOfFame.Controllers
 
                 return Ok(person);
             }
-            catch
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return StatusCode((int)HttpStatusCode.InternalServerError,
+                    ex.InnerException.Message.ToString());
             }
         }
 
@@ -106,24 +110,25 @@ namespace SwaggerHallOfFame.Controllers
         /// </remarks>
         //Метод Put: api/v1/person Обновление данных конретного сотрудника
         [HttpPut("v1/person/{id}")]
-        public async Task<ActionResult<Person>> PutPerson(long? id,Person updateperson)
+        public async Task<ActionResult<Person>> PutPerson(long? id,Person updatePerson)
         {
             try
             {
-                if (id != updateperson.Id)
+                if (id != updatePerson.Id)
                 {
                     return BadRequest("Не совпадают id");
                 }
 
                 var person = await _db.Persons.FindAsync(id);
-                _db.Entry(person).CurrentValues.SetValues(updateperson);
+                _db.Entry(person).CurrentValues.SetValues(updatePerson);
                 await _db.SaveChangesAsync();
 
                 return Ok(person);
             }
-            catch
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return StatusCode((int)HttpStatusCode.InternalServerError,
+                    ex.InnerException.Message.ToString());
             }
         }
 
@@ -148,9 +153,10 @@ namespace SwaggerHallOfFame.Controllers
 
                 return Ok(person);
             }
-            catch
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return StatusCode((int)HttpStatusCode.InternalServerError,
+                    ex.InnerException.Message.ToString());
             }
         }
     }
