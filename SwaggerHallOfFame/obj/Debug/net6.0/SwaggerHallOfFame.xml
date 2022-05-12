@@ -34,7 +34,7 @@
              </summary>
              <remarks>
              Пример запроса:
-             
+            
                  {
                     "id": 1,
                     "name": "Petr Bikhteev",
@@ -81,9 +81,10 @@
              Пример запроса:
              
                  {
-                    "id": 1,
-                    "name": "Petr Bikhteev",
-                    "displayName": "petr2002"      
+                     "idPersonSkill": 0,
+                     "level": 10,
+                     "personId": 0,
+                     "skillId": 0
                  }
             
              </remarks>

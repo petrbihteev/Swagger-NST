@@ -4,7 +4,10 @@ using System.Net;
 
 namespace SwaggerHallOfFame.Controllers
 {
-    [Route("api/")]
+    /// <summary>  
+    ///  Контроллер для навыков сотрудника.  
+    /// </summary>
+    [Route("api/v1/")]
     [ApiController]
     public class PersonSkillController : Controller
     {
@@ -18,8 +21,7 @@ namespace SwaggerHallOfFame.Controllers
         /// <summary>
         /// Получение всех навыков для сотрудниокв
         /// </summary>
-        //Метод GET: api/v1/personskills Получение всех навыков для сотрудников
-        [HttpGet("v1/personskills")]
+        [HttpGet("personskills/")]
         public async Task<ActionResult<IEnumerable<ConPersonSkill>>> GetPersonSkills()
         {
             try
@@ -36,15 +38,14 @@ namespace SwaggerHallOfFame.Controllers
             catch (Exception ex)
             {
                 return StatusCode((int)HttpStatusCode.InternalServerError,
-                    ex.InnerException.Message.ToString());
+                    ex.ToString());
             }
         }
 
         /// <summary>
         /// Получение навыка(-ов) определенного сотрудника
         /// </summary>
-        //Метод GET: api/v1/personskill/id Получение навыков сотрудника по Id
-        [HttpGet("v1/personskill/{id}")]
+        [HttpGet("personskill/{id}")]
         public async Task<IActionResult> GetPersonSkill(long? id)
         {
             try
@@ -52,7 +53,7 @@ namespace SwaggerHallOfFame.Controllers
                 var personSkill = await _db.ConPersonSkills
                     .Where(x => x.PersonId == id).ToListAsync();
 
-                if (personSkill.Count == 0)
+                if (!personSkill.Any())
                 {
                     return NotFound("Навыки сотрудника не найдены");
                 }
@@ -62,7 +63,7 @@ namespace SwaggerHallOfFame.Controllers
             catch (Exception ex)
             {
                 return StatusCode((int)HttpStatusCode.InternalServerError,
-                    ex.InnerException.Message.ToString());
+                    ex.ToString());
             }
         }
 
@@ -79,8 +80,7 @@ namespace SwaggerHallOfFame.Controllers
         ///     }
         ///
         /// </remarks>
-        //Метод Post: api/v1/personskill Добавление навыка для сотрудника
-        [HttpPost("v1/personskill/")]
+        [HttpPost("personskill/")]
         public async Task<ActionResult<ConPersonSkill>> PostPersonSkill(ConPersonSkill postPersonSkill)
         {
             try
@@ -101,7 +101,7 @@ namespace SwaggerHallOfFame.Controllers
             catch (Exception ex)
             {
                 return StatusCode((int)HttpStatusCode.InternalServerError, 
-                    ex.InnerException.Message.ToString());
+                    ex.ToString());
             }
         }
 
@@ -119,8 +119,7 @@ namespace SwaggerHallOfFame.Controllers
         ///     }
         ///
         /// </remarks>
-        //Метод Put: api/v1/personskill Обновление навыка у сотрудника
-        [HttpPut("v1/personskill/{id}")]
+        [HttpPut("personskill/{id}")]
         public async Task<ActionResult<ConPersonSkill>> PutPersonSkill(long? id, ConPersonSkill updatePersonSkill)
         {
             try
@@ -139,15 +138,14 @@ namespace SwaggerHallOfFame.Controllers
             catch (Exception ex)
             {
                 return StatusCode((int)HttpStatusCode.InternalServerError,
-                    ex.InnerException.Message.ToString());
+                    ex.ToString());
             }
         }
 
         /// <summary>
         /// Удаление конкретного навыка
         /// </summary>
-        //Метод Delete: api/v1/personskill/id Удаление конкретного навыка по Id
-        [HttpDelete("v1/personskill/{id}")]
+        [HttpDelete("personskill/{id}")]
         public async Task<IActionResult> DeletePersonSkill(long? id)
         {
             try
@@ -167,7 +165,7 @@ namespace SwaggerHallOfFame.Controllers
             catch (Exception ex)
             {
                 return StatusCode((int)HttpStatusCode.InternalServerError,
-                    ex.InnerException.Message.ToString());
+                    ex.ToString());
             }
         }
     }

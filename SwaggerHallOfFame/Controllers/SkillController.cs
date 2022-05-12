@@ -4,8 +4,10 @@ using System.Net;
 
 namespace SwaggerHallOfFame.Controllers
 {
-    //[Route("api/[controller]")]
-    [Route("api/")]
+    /// <summary>  
+    ///  Контроллер для навыков.  
+    /// </summary>
+    [Route("api/v1/")]
     [ApiController]
     public class SkillController : Controller
     {
@@ -19,8 +21,7 @@ namespace SwaggerHallOfFame.Controllers
         /// <summary>
         /// Получение всех навыков
         /// </summary>
-        //Метод GET: api/v1/skills Получение всех сотрудников
-        [HttpGet("v1/skills")]
+        [HttpGet("skills/")]
         public async Task<ActionResult<IEnumerable<Skill>>> GetSkills()
         {
             try
@@ -37,15 +38,14 @@ namespace SwaggerHallOfFame.Controllers
             catch (Exception ex)
             {
                 return StatusCode((int)HttpStatusCode.InternalServerError,
-                    ex.InnerException.Message.ToString());
+                    ex.ToString());
             }
         }
 
         /// <summary>
         /// Получение конкретного навыка
         /// </summary>
-        //Метод GET: api/v1/skill/id Получение конкретного навыка по Id
-        [HttpGet("v1/skill/{id}")]
+        [HttpGet("skill/{id}")]
         public async Task<IActionResult> GetSkill(long? id)
         {
             try
@@ -62,7 +62,7 @@ namespace SwaggerHallOfFame.Controllers
             catch (Exception ex)
             {
                 return StatusCode((int)HttpStatusCode.InternalServerError,
-                    ex.InnerException.Message.ToString());
+                    ex.ToString());
             }
         }
 
@@ -77,8 +77,7 @@ namespace SwaggerHallOfFame.Controllers
         ///     }
         ///
         /// </remarks>
-        //Метод Post: api/v1/skill Добавление навыка
-        [HttpPost("v1/skill/")]
+        [HttpPost("skill/")]
         public async Task<ActionResult<Skill>> PostSkill(Skill skill)
         {
             try
@@ -91,7 +90,7 @@ namespace SwaggerHallOfFame.Controllers
             catch (Exception ex)
             {
                 return StatusCode((int)HttpStatusCode.InternalServerError,
-                    ex.InnerException.Message.ToString());
+                    ex.ToString());
             }
         }
 
@@ -107,8 +106,7 @@ namespace SwaggerHallOfFame.Controllers
         ///     }
         ///
         /// </remarks>
-        //Метод Put: api/v1/skill Обновление данных конретного навыка
-        [HttpPut("v1/skill/{id}")]
+        [HttpPut("skill/{id}")]
         public async Task<ActionResult<Skill>> PutSkill(long? id, Skill updateSkill)
         {
             try
@@ -127,15 +125,14 @@ namespace SwaggerHallOfFame.Controllers
             catch (Exception ex)
             {
                 return StatusCode((int)HttpStatusCode.InternalServerError,
-                    ex.InnerException.Message.ToString());
+                    ex.ToString());
             }
         }
 
         /// <summary>
         /// Удаление конкретного навыка
         /// </summary>
-        //Метод Delete: api/v1/skill/id Удаление конкретного навыка по Id
-        [HttpDelete("v1/skill/{id}")]
+        [HttpDelete("skill/{id}")]
         public async Task<IActionResult> DeleteSkill(long? id)
         {
             try
@@ -155,7 +152,7 @@ namespace SwaggerHallOfFame.Controllers
             catch (Exception ex)
             {
                 return StatusCode((int)HttpStatusCode.InternalServerError,
-                     ex.InnerException.Message.ToString());
+                     ex.ToString());
             }
         }
     }

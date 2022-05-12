@@ -4,7 +4,10 @@ using System.Net;
 
 namespace SwaggerHallOfFame.Controllers
 {
-    [Route("api/")]
+    /// <summary>  
+    ///  Контроллер для сотрудников.  
+    /// </summary>
+    [Route("api/v1/")]
     [ApiController]
     public class PersonController : Controller
     {
@@ -18,8 +21,7 @@ namespace SwaggerHallOfFame.Controllers
         /// <summary>
         /// Получение всех сотрудников
         /// </summary>
-        //Метод GET: api/v1/persons Получение всех сотрудников
-        [HttpGet("v1/persons")]
+        [HttpGet("persons/")]
         public async Task<ActionResult<IEnumerable<Person>>> GetPersons()
         {
             try
@@ -36,15 +38,14 @@ namespace SwaggerHallOfFame.Controllers
             catch (Exception ex)
             {
                 return StatusCode((int)HttpStatusCode.InternalServerError,
-                    ex.InnerException.Message.ToString());
+                    ex.ToString());
             }
         }
 
         /// <summary>
         /// Получение конкретного сотрудника
         /// </summary>
-        //Метод GET: api/v1/person/id Получение конкретного сотрудника по Id
-        [HttpGet("v1/person/{id}")]
+        [HttpGet("person/{id}")]
         public async Task<IActionResult> GetPerson(long? id)
         {
             try
@@ -61,7 +62,7 @@ namespace SwaggerHallOfFame.Controllers
             catch (Exception ex)
             {
                 return StatusCode((int)HttpStatusCode.InternalServerError,
-                    ex.InnerException.Message.ToString());
+                    ex.ToString());
             }
         }
 
@@ -77,8 +78,7 @@ namespace SwaggerHallOfFame.Controllers
         ///     }
         ///
         /// </remarks>
-        //Метод Post: api/v1/person Добавление сотрудника
-        [HttpPost("v1/person/")]
+        [HttpPost("person/")]
         public async Task<ActionResult<Person>> PostPerson(Person person)
         {
             try
@@ -91,7 +91,7 @@ namespace SwaggerHallOfFame.Controllers
             catch (Exception ex)
             {
                 return StatusCode((int)HttpStatusCode.InternalServerError,
-                    ex.InnerException.Message.ToString());
+                    ex.ToString());
             }
         }
 
@@ -100,7 +100,7 @@ namespace SwaggerHallOfFame.Controllers
         /// </summary>
         /// <remarks>
         /// Пример запроса:
-        /// 
+        ///
         ///     {
         ///        "id": 1,
         ///        "name": "Petr Bikhteev",
@@ -108,8 +108,7 @@ namespace SwaggerHallOfFame.Controllers
         ///     }
         ///
         /// </remarks>
-        //Метод Put: api/v1/person Обновление данных конретного сотрудника
-        [HttpPut("v1/person/{id}")]
+        [HttpPut("person/{id}")]
         public async Task<ActionResult<Person>> PutPerson(long? id,Person updatePerson)
         {
             try
@@ -128,15 +127,14 @@ namespace SwaggerHallOfFame.Controllers
             catch (Exception ex)
             {
                 return StatusCode((int)HttpStatusCode.InternalServerError,
-                    ex.InnerException.Message.ToString());
+                    ex.ToString());
             }
         }
 
         /// <summary>
         /// Удаление конкретного сотрудника
         /// </summary>
-        //Метод Delete: api/v1/person/id Удаление конкретного сотрудника по Id
-        [HttpDelete("v1/person/{id}")]
+        [HttpDelete("person/{id}")]
         public async Task<IActionResult> DeletePerson(long? id)
         {
             try
@@ -156,7 +154,7 @@ namespace SwaggerHallOfFame.Controllers
             catch (Exception ex)
             {
                 return StatusCode((int)HttpStatusCode.InternalServerError,
-                    ex.InnerException.Message.ToString());
+                    ex.ToString());
             }
         }
     }

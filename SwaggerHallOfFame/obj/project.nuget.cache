@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "hN63cwoXI5C81SK4xgTonfrrox3AaimPG3MYPsX0femZ/NaO49W/sSw4TbytD49qPqRB6DZGz+0rc8u2+hoKQA==",
+  "dgSpecHash": "B6Li02pY8/f318x85y0Hoityu76ouAYbiFKLXuO8JW9yn50dVLslKOxs4a8k+N5t0375RnTjTxCkZLBHzNJSUQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Acer\\Desktop\\SwaggerHallOfFame\\SwaggerHallOfFame\\SwaggerHallOfFame.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Acer\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
+    "C:\\Users\\Acer\\.nuget\\packages\\microsoft.aspnetcore.mvc.versioning\\5.0.0\\microsoft.aspnetcore.mvc.versioning.5.0.0.nupkg.sha512",
     "C:\\Users\\Acer\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\Acer\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",
     "C:\\Users\\Acer\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.1.1\\microsoft.data.sqlclient.sni.runtime.2.1.1.nupkg.sha512",
